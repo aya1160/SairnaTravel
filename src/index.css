@@ -1,111 +1,95 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Cairo";
+  src: url("./assets/fonts/Cairo-VariableFont_slnt,wght.ttf") format("truetype");
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* dark: يعمل عند data-theme=dark على <html> */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* 1) القيم الأصلية (فاتح) — خارج أي layer */
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  color-scheme: light;
+  --bg:#f8fafb; --surface:#fff; --surface-alt:#f2f7f8;
+  --text:#112f41; --muted:#718493; --border:#e4ecef;
+  --primary:#0aa99b; --primary-deep:#078e87;
+  --dark:#103a4e; --dark-deep:#0a2c3e; --soft-teal:#e6f8f3;
+  --card-shadow:0 15px 55px rgba(19,54,72,.065);
+  --card-shadow-lg:0 22px 60px rgba(19,54,72,.11);
+  --container:1216px;
+}
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+/* 2) القيم الداكنة */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg:#0b1c29; --surface:#112b3b; --surface-alt:#173748;
+  --text:#eef8fa; --muted:#9eb3be; --border:#254252;
+  --dark:#0e2634; --dark-deep:#091c27; --soft-teal:#174b49;
+  --card-shadow:0 15px 55px rgba(0,0,0,.16);
+  --card-shadow-lg:0 22px 60px rgba(0,0,0,.26);
+}
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* 3) قيم ثابتة لا تتغير بين الفاتح والداكن */
+@theme {
+  --font-sans: Cairo, "Segoe UI", Tahoma, sans-serif;
+  --radius-card: 22px;
+}
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
+/* 4) قيم تتغير مع الثيم: نربطها بـ var (inline) */
+@theme inline {
+  --color-page: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-line: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-deep: var(--primary-deep);
+  --color-dark: var(--dark);
+  --color-dark-deep: var(--dark-deep);
+  --color-soft-teal: var(--soft-teal);
+  --shadow-card: var(--card-shadow);
+  --shadow-card-lg: var(--card-shadow-lg);
+}
+
+/* 5) الأساسيات: داخل @layer base حتى تتغلب عليها كلاسات Tailwind */
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { line-height: 1.5; font-weight: 800; }
+  button { cursor: pointer; }
+  :is(button, a, input, select, summary):focus-visible {
+    outline: 3px solid #4cc8bf;
+    outline-offset: 3px;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+/* 6) تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
   }
 }
 
-body {
-  margin: 0;
-}
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
+@theme {
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-float-slow: float 10s ease-in-out -4.5s infinite;
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(var(--float-distance, -5px)); }
   }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
 }
