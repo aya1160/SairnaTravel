@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, NavLink } from 'react-router'
+import { Link, NavLink } from "react-router-dom";
 import { ArrowLeft, ChevronLeft, Menu, X } from 'lucide-react'
 import Container from '../ui/Container'
 import Button from '../ui/Button'

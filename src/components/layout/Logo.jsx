@@ -1,4 +1,4 @@
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import logoUrl from '../../assets/images/logo.svg'
 
 export default function Logo({ variant = 'default' }) {
