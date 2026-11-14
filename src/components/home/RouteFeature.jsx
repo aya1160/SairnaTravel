@@ -21,9 +21,11 @@ export default function RouteFeature() {
 
           <div className="flex flex-col justify-center p-[50px] max-[900px]:p-8 max-[650px]:p-6">
 
-            <Eyebrow icon={Sparkles}>
-              وين وصلت الرحلة؟
-            </Eyebrow>
+          <div className="w-fit">
+  <Eyebrow icon={Sparkles}>
+    وين وصلت الرحلة؟
+  </Eyebrow>
+</div>  
 
             <h2 className="mt-5 text-[clamp(28px,3vw,40px)] leading-[1.65] font-black">
               الطريق قدامك.

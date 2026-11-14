@@ -5,6 +5,7 @@ import MetricsStrip from "../../components/home/MetricsStrip";
 import Destinations from "../../components/home/Destinations";
 import ProcessSteps from "../../components/home/ProcessSteps";
 import RouteFeature from "../../components/home/RouteFeature";
+import CTABanner from "../../components/home/CTABanner";
 
 
 export default function Home() {
@@ -21,7 +22,7 @@ return (
   <main className="bg-page text-ink">
     <Hero />
 
-    <div className="relative z-[3] mx-auto max-w-[1216px] px-4 sm:px-6 lg:px-8">
+    <div className="relative z-3 mx-auto max-w-[1216px] px-4 sm:px-6 lg:px-8">
       <SearchBox onSearch={handleSearch} />
     </div>
 
@@ -30,6 +31,7 @@ return (
       <Destinations />
       <ProcessSteps />
        <RouteFeature />
+       <CTABanner />
 
     </div>
   </main>
