@@ -3,7 +3,8 @@ import SearchBox from "../../components/home/SearchBox";
 import { useNavigate } from "react-router-dom";
 import MetricsStrip from "../../components/home/MetricsStrip";
 import Destinations from "../../components/home/Destinations";
-
+import ProcessSteps from "../../components/home/ProcessSteps";
+import RouteFeature from "../../components/home/RouteFeature";
 
 
 export default function Home() {
@@ -27,6 +28,9 @@ return (
     <div className="mt-8">
       <MetricsStrip />
       <Destinations />
+      <ProcessSteps />
+       <RouteFeature />
+
     </div>
   </main>
 
