@@ -3,12 +3,16 @@ import umayyadMosqueImg from '../../assets/Images/image.jpg';
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-page text-ink pt-8 pb-16 lg:pt-12 lg:py-24">
+    <section 
+      className="relative overflow-hidden bg-page [[data-theme=dark]_&]:bg-[linear-gradient(160deg,#102f3d,var(--bg))] text-ink pt-8 pb-16 lg:pt-12 lg:py-24"
+    >
       
-      {/* تأثير التوهج الخلفي */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 blur-[140px] rounded-full pointer-events-none -z-10"></div>
+      {/* تأثير التوهج الجديد بنفس خصائص :before */}
+      <div 
+        className="absolute w-[540px] h-[540px] rounded-full -top-[180px] -left-[140px] pointer-events-none bg-[radial-gradient(circle,rgba(76,203,175,0.1),transparent_66%)]"
+      />
 
-      <div className="max-w-[1216px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-[1216px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* القسم الأيمن: النصوص والترحيب */}
