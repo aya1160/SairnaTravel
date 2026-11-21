@@ -1,4 +1,4 @@
-
+import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   Star,
   Bus,
@@ -10,6 +10,13 @@ import {
 } from "lucide-react";
 
 export default function TripCard({ trip }) {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const passengers = searchParams.get("passengers") || 1;
+
+  const handleSelect = () =>
+    navigate(`/checkout/${trip.id}?passengers=${passengers}`);
+
   return (
     <article className="overflow-hidden rounded-[17px] border border-[var(--border)] bg-[var(--surface)] transition-all duration-300 hover:-translate-y-[3px] hover:border-[#b4e4db] hover:shadow-[var(--shadow-md)]">
 
@@ -99,7 +106,7 @@ export default function TripCard({ trip }) {
             السعر للشخص
           </small>
 
-          <b className="whitespace-nowrap text-[19px] font-black text-[var(--dark-deep)] [data-theme=dark_&]:text-[var(--text)]">
+          <b className="whitespace-nowrap text-[19px] font-black text-[var(--dark-deep)] [[data-theme=dark]_&]:text-[var(--text)]">
             {trip.price}
           </b>
 
@@ -109,7 +116,7 @@ export default function TripCard({ trip }) {
           </span>
 
           <button
-            onClick={() => trip.onSelect?.(trip.id)}
+            onClick={handleSelect}
             className="flex min-h-[38px] items-center justify-center gap-2 rounded-lg bg-[var(--primary)] px-[10px] py-[7px] text-[11px] font-bold text-white transition-opacity hover:opacity-90"
           >
             اختيار المقاعد

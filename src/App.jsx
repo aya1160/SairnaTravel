@@ -12,6 +12,8 @@ import ChooseTrip from "./pages/ChooseTrip/ChooseTrip";
 import Tracking from "./pages/Tracking/Tracking";
 import Companies from "./pages/companies/Companies";
 import MyBookings from "./pages/myBookings/MyBookings";
+import Checkout from "./pages/checkout/Checkout";
+
 export default function App() {
   return (
     <Routes>
@@ -21,7 +23,7 @@ export default function App() {
         <Route path="companies" element={<Companies/>} />
         <Route path="my-trips" element={<MyBookings/>} />
         <Route path="tracking" element={<Tracking />} />
-
+<Route path="/checkout/:tripId" element={<Checkout />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="profile" element={<Profile />} />
